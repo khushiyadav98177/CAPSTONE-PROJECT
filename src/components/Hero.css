@@ -1,0 +1,99 @@
+.hero {
+  color: white;
+  object-fit: contain;
+  height: 80vh;
+  position: relative;
+}
+
+.hero__skeleton {
+  height: 80vh;
+  background-color: var(--netflix-black);
+}
+
+.hero__contents {
+  margin-left: 30px;
+  padding-top: 25vh;
+  height: 190px;
+}
+
+@media (min-width: 768px) {
+  .hero__contents {
+    margin-left: 60px;
+  }
+}
+
+.hero__title {
+  font-size: 3rem;
+  font-weight: 800;
+  padding-bottom: 0.3rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.45);
+}
+
+.hero__description {
+  width: 45rem;
+  line-height: 1.3;
+  padding-top: 1rem;
+  font-size: 1.2rem;
+  max-width: 90vw;
+  height: 80px;
+  font-weight: 500;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.45);
+}
+
+.hero__buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.hero__button {
+  cursor: pointer;
+  color: #fff;
+  outline: none;
+  border: none;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  gap: 10px;
+  transition: all 0.2s;
+}
+
+.hero__button--play {
+  background-color: white;
+  color: black;
+}
+
+.hero__button--play:hover {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.hero__button--list {
+  background-color: rgba(109, 109, 110, 0.7);
+}
+
+.hero__button--list:hover {
+  background-color: rgba(109, 109, 110, 0.4);
+}
+
+.hero__icon {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.hero__fadeBottom {
+  height: 15rem;
+  background-image: linear-gradient(
+    180deg,
+    transparent,
+    rgba(37, 37, 37, 0.61),
+    #141414
+  );
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
