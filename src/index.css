@@ -1,38 +1,87 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
 
-:root {
-  --netflix-black: #141414;
-  --netflix-red: #e50914;
-  --netflix-red-hover: #f40612;
-  --text-color: #ffffff;
-  --text-grey: #e5e5e5;
-  --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+@theme {
+  --color-playfix-red: #e50914;
+  --color-playfix-red-hover: #f40612;
+  --color-playfix-black: #141414;
+  --color-playfix-dark: #18181b;
+  --font-sans: 'Poppins', 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@layer base {
+  :root {
+    --bg-color: #ffffff;
+    --text-color: #141414;
+    --nav-bg: rgba(255, 255, 255, 0.7);
+    --gradient-1: #ffffff;
+    --gradient-2: #f3f4f6;
+  }
+
+  .dark {
+    --bg-color: #050505;
+    --text-color: #ffffff;
+    --nav-bg: rgba(5, 5, 5, 0.7);
+    --gradient-1: #0f0c29;
+    --gradient-2: #302b63;
+    --gradient-3: #24243e;
+  }
+
+  body {
+    @apply text-[var(--text-color)] transition-colors duration-500;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    background-color: var(--bg-color);
+  }
 }
 
-body {
-  font-family: var(--sans);
-  background-color: var(--netflix-black);
-  color: var(--text-color);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+/* Animated Gradient Background */
+.animated-bg {
+  background: linear-gradient(-45deg, var(--gradient-1), var(--gradient-2), var(--gradient-3, var(--gradient-1)));
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-button {
-  cursor: pointer;
-  border: none;
-  font-family: var(--sans);
+/* Floating Particles (CSS Only) */
+.particles-container {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 4px; height: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255,255,255,0.2);
+  animation: floatUp 20s infinite linear;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+}
+
+/* Skeleton Shimmer */
+.skeleton-shimmer {
+  transform: translateX(-100%);
+  animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
 }
 
 /* Custom Scrollbar */
@@ -44,9 +93,10 @@ button {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: rgba(255,255,255,0.2);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #666;
+  background: rgba(255,255,255,0.4);
 }
+

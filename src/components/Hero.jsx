@@ -1,61 +1,67 @@
 import React, { useState, useEffect } from 'react';
-import axios, { requests, getImageUrl } from '../services/api';
-import { getMockHero } from '../services/mockData';
-import './Hero.css';
+import { Play, Info } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import Button from './Button';
+import { SkeletonHero } from './Skeleton';
+import { mockMovies } from '../services/mockData';
 
 const Hero = () => {
   const [movie, setMovie] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const request = await axios.get(requests.fetchNetflixOriginals);
-        const results = request.data.results;
-        setMovie(results[Math.floor(Math.random() * results.length)]);
-      } catch (error) {
-        console.error("API Error, falling back to stunning mock data");
-        setMovie(getMockHero());
-      }
-    }
-    fetchData();
+    // Simulate network delay
+    setTimeout(() => {
+      setMovie(mockMovies[Math.floor(Math.random() * mockMovies.length)]);
+      setLoading(false);
+    }, 500);
   }, []);
 
-  const truncate = (str, n) => {
-    return str?.length > n ? str.substr(0, n - 1) + '...' : str;
-  };
-
-  if (!movie) {
-    return <header className="hero__skeleton"></header>;
+  if (loading || !movie) {
+    return <SkeletonHero />;
   }
 
-  // If it's a mock movie, the path might be a full URL already
-  const backdropUrl = movie.backdrop_path?.startsWith('http') 
-    ? movie.backdrop_path 
-    : getImageUrl(movie.backdrop_path);
-
   return (
-    <header className="hero" style={{
-      backgroundImage: `url("${backdropUrl}")`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center center',
-    }}>
-      <div className="hero__contents">
-        <h1 className="hero__title">
-          {movie?.title || movie?.name || movie?.original_name}
+    <header className="relative h-[85vh] md:h-[85vh] text-white overflow-hidden">
+      <motion.div 
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+        className="absolute inset-0 bg-cover bg-center md:bg-top"
+        style={{ backgroundImage: `url("${movie.thumbnailUrl}")` }}
+      />
+      {/* Stronger gradient on mobile to ensure text readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-color)] via-black/80 md:via-black/50 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/90 md:from-black/80 via-black/40 to-transparent hidden md:block" />
+      
+      <motion.div 
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.8 }}
+        className="relative z-10 flex flex-col justify-end md:justify-center h-full px-6 md:px-12 w-full md:w-2/3 lg:w-1/2 pb-16 md:pb-0 md:pt-20"
+      >
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold pb-2 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)] tracking-tight leading-tight">
+          {movie.title}
         </h1>
-        <div className="hero__buttons">
-          <button className="hero__button hero__button--play">
-            <span className="hero__icon">▶</span> Play
-          </button>
-          <button className="hero__button hero__button--list">
-            <span className="hero__icon">ℹ️</span> More Info
-          </button>
+        
+        <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mb-4 mt-6 md:mt-8 w-full sm:w-auto">
+          <Link to={`/movie/${movie._id}`} className="w-full sm:w-auto">
+            <Button variant="primary" className="w-full py-3 md:py-2 text-lg md:text-base">
+              <Play className="w-6 h-6 md:w-5 md:h-5 mr-2 fill-current" /> Play
+            </Button>
+          </Link>
+          <Link to={`/movie/${movie._id}`} className="w-full sm:w-auto">
+            <Button variant="secondary" className="w-full py-3 md:py-2 text-lg md:text-base">
+              <Info className="w-6 h-6 md:w-5 md:h-5 mr-2" /> More Info
+            </Button>
+          </Link>
         </div>
-        <h1 className="hero__description">
-          {truncate(movie?.overview, 150)}
+        
+        <h1 className="text-sm sm:text-base md:text-lg pt-2 md:pt-4 drop-shadow-md max-w-xl line-clamp-3 md:line-clamp-4 text-gray-300 font-medium leading-relaxed">
+          {movie.description}
         </h1>
-      </div>
-      <div className="hero__fadeBottom"></div>
+      </motion.div>
     </header>
   );
 };
