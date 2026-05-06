@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, List, Download } from 'lucide-react';
+import { Home, Tv, Film } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const BottomNav = () => {
@@ -8,8 +8,8 @@ const BottomNav = () => {
 
   const navItems = [
     { name: 'Home', path: '/', icon: Home },
-    { name: 'My List', path: '/watchlist', icon: List },
-    { name: 'Downloads', path: '/downloads', icon: Download },
+    { name: 'TV Shows', path: '/tv-shows', icon: Tv },
+    { name: 'Movies', path: '/movies', icon: Film },
   ];
 
   return (

@@ -5,7 +5,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import MovieDetails from './pages/MovieDetails';
 import AdminDashboard from './pages/AdminDashboard';
-import Watchlist from './pages/Watchlist';
+import Movies from './pages/Movies';
+import TVShows from './pages/TVShows';
 import NavBar from './components/NavBar';
 import BottomNav from './components/BottomNav';
 import Particles from './components/Particles';
@@ -21,22 +22,55 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
 };
 
 function App() {
+  const { user } = useContext(AuthContext);
   return (
     <div className="animated-bg min-h-screen text-white relative">
       <Particles count={40} />
       <Router>
-        <NavBar />
-        <div className="min-h-screen pt-16 pb-20 md:pb-0 relative z-10">
+        {user && <NavBar />}
+        <div className={`min-h-screen ${user ? 'pt-16 pb-20 md:pb-0' : 'flex items-center justify-center'} relative z-10`}>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/movie/:id" element={<MovieDetails />} />
             <Route 
-              path="/watchlist" 
+              path="/" 
               element={
                 <ProtectedRoute>
-                  <Watchlist />
+                  <Home />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/login" 
+              element={
+                user ? <Navigate to="/" /> : <Login />
+              } 
+            />
+            <Route 
+              path="/register" 
+              element={
+                user ? <Navigate to="/" /> : <Register />
+              } 
+            />
+            <Route 
+              path="/movie/:id" 
+              element={
+                <ProtectedRoute>
+                  <MovieDetails />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/movies" 
+              element={
+                <ProtectedRoute>
+                  <Movies />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/tv-shows" 
+              element={
+                <ProtectedRoute>
+                  <TVShows />
                 </ProtectedRoute>
               } 
             />
@@ -58,7 +92,7 @@ function App() {
             />
           </Routes>
         </div>
-        <BottomNav />
+        {user && <BottomNav />}
       </Router>
     </div>
   );

@@ -5,6 +5,7 @@ import { useDebounce } from '../hooks/useDebounce';
 import { mockMovies } from '../services/mockData';
 import { Search } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Footer from '../components/Footer';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -86,6 +87,7 @@ const Home = () => {
           </motion.div>
         )}
       </div>
+      {!search && <Footer />}
     </div>
   );
 };

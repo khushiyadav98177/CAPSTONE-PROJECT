@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Button from './Button';
 import { SkeletonHero } from './Skeleton';
 import { mockMovies } from '../services/mockData';
+import HeroActions from './HeroActions';
 
 const Hero = () => {
   const [movie, setMovie] = useState(null);
@@ -45,7 +46,7 @@ const Hero = () => {
           {movie.title}
         </h1>
         
-        <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mb-4 mt-6 md:mt-8 w-full sm:w-auto">
+        <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mb-2 mt-6 md:mt-8 w-full sm:w-auto">
           <Link to={`/movie/${movie._id}`} className="w-full sm:w-auto">
             <Button variant="primary" className="w-full py-3 md:py-2 text-lg md:text-base">
               <Play className="w-6 h-6 md:w-5 md:h-5 mr-2 fill-current" /> Play
@@ -57,10 +58,13 @@ const Hero = () => {
             </Button>
           </Link>
         </div>
-        
-        <h1 className="text-sm sm:text-base md:text-lg pt-2 md:pt-4 drop-shadow-md max-w-xl line-clamp-3 md:line-clamp-4 text-gray-300 font-medium leading-relaxed">
+
+        {/* ── Interactive Action Buttons ── */}
+        <HeroActions movie={movie} />
+
+        <p className="text-sm sm:text-base md:text-lg pt-3 md:pt-4 drop-shadow-md max-w-xl line-clamp-3 md:line-clamp-4 text-gray-300 font-medium leading-relaxed">
           {movie.description}
-        </h1>
+        </p>
       </motion.div>
     </header>
   );

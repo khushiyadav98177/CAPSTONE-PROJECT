@@ -46,8 +46,12 @@ const NavBar = () => {
               Home
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-playfix-red transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link to="/watchlist" className="relative group hover:text-playfix-red transition-colors py-1">
-              My List
+            <Link to="/tv-shows" className="relative group hover:text-playfix-red transition-colors py-1">
+              TV Shows
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-playfix-red transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+            <Link to="/movies" className="relative group hover:text-playfix-red transition-colors py-1">
+              Movies
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-playfix-red transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </div>
@@ -129,7 +133,8 @@ const NavBar = () => {
 
               <div className="flex flex-col space-y-6 text-lg font-semibold text-white">
                 <Link to="/" className="hover:text-playfix-red transition-colors py-2 border-b border-white/10">Home</Link>
-                <Link to="/watchlist" className="hover:text-playfix-red transition-colors py-2 border-b border-white/10">My List</Link>
+                <Link to="/tv-shows" className="hover:text-playfix-red transition-colors py-2 border-b border-white/10">TV Shows</Link>
+                <Link to="/movies" className="hover:text-playfix-red transition-colors py-2 border-b border-white/10">Movies</Link>
                 
                 <div className="flex items-center justify-between py-2 border-b border-white/10">
                   <span>Theme</span>

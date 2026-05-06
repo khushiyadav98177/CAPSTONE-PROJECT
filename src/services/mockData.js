@@ -2,6 +2,7 @@ export const mockMovies = [
   {
     _id: "1",
     title: "Stranger Things",
+    type: "TV Show",
     description: "When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.",
     genre: "Sci-Fi",
     thumbnailUrl: "https://image.tmdb.org/t/p/original/56v2KjBlU4XaEG9xG9IG45BEQE6.jpg",
@@ -11,6 +12,7 @@ export const mockMovies = [
   {
     _id: "2",
     title: "Breaking Bad",
+    type: "TV Show",
     description: "A high school chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine in order to secure his family's future.",
     genre: "Drama",
     thumbnailUrl: "https://image.tmdb.org/t/p/original/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
@@ -20,6 +22,7 @@ export const mockMovies = [
   {
     _id: "3",
     title: "The Witcher",
+    type: "TV Show",
     description: "Geralt of Rivia, a mutated monster-hunter for hire, journeys toward his destiny in a turbulent world where people often prove more wicked than beasts.",
     genre: "Action",
     thumbnailUrl: "https://image.tmdb.org/t/p/original/jBJWaqoSCiARWtfV0GlqHrcdidd.jpg",
@@ -29,6 +32,7 @@ export const mockMovies = [
   {
     _id: "4",
     title: "Inception",
+    type: "Movie",
     description: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
     genre: "Sci-Fi",
     thumbnailUrl: "https://image.tmdb.org/t/p/original/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg",
@@ -38,6 +42,7 @@ export const mockMovies = [
   {
     _id: "5",
     title: "The Dark Knight",
+    type: "Movie",
     description: "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
     genre: "Action",
     thumbnailUrl: "https://image.tmdb.org/t/p/original/nMKdUUepR0i5zn0y1T4CsSB5chy.jpg",
@@ -47,6 +52,7 @@ export const mockMovies = [
   {
     _id: "6",
     title: "Peaky Blinders",
+    type: "TV Show",
     description: "A gangster family epic set in 1919 Birmingham, England; centered on a gang who sew razor blades in the peaks of their caps, and their fierce boss Tommy Shelby.",
     genre: "Drama",
     thumbnailUrl: "https://image.tmdb.org/t/p/original/vUUqzWa2LcUAYBlERzXv01H5aE2.jpg",
@@ -56,6 +62,7 @@ export const mockMovies = [
   {
     _id: "7",
     title: "Avengers: Endgame",
+    type: "Movie",
     description: "After the devastating events of Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions.",
     genre: "Action",
     thumbnailUrl: "https://image.tmdb.org/t/p/original/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
